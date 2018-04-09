@@ -27,13 +27,7 @@ import java.util.ArrayList;
  */
 public class code3 {
 
-    public static void main(String[] args) {
-        System.out.println(lengthOfLongestSubstring("abcabcbb"));
-        System.out.println(lengthOfLongestSubstring("bbbbb"));
-        System.out.println(lengthOfLongestSubstring("pwwkew"));
-    }
-
-    public static int lengthOfLongestSubstring(String s) {
+    private static int lengthOfLongestSubstring(String s) {
         if (s == null || s.length() == 0) {
             return 0;
         }
@@ -43,7 +37,6 @@ public class code3 {
         ArrayList<Character> tempList = new ArrayList<>();
         for (int i = 0; i < chars.length; i++) {
             char c = chars[i];
-            // 倒序进行比对，如果存在则跳出，保存大小，同时将之前的保存
             for (int j = list.size() - 1; j >= 0; j--) {
                 Character temp = list.get(j);
                 if (temp == c) {
@@ -58,10 +51,17 @@ public class code3 {
             if (max < tempList.size()) {
                 max = tempList.size();
             }
+
             list.clear();
             list.addAll(tempList);
             tempList.clear();
         }
         return max;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(lengthOfLongestSubstring("abcabcbb"));
+        System.out.println(lengthOfLongestSubstring("bbbbb"));
+        System.out.println(lengthOfLongestSubstring("pwwkew"));
     }
 }
